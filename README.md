@@ -6,7 +6,14 @@ Kryo for Clojure
 
 ## Usage
 
-FIXME
+``` clojure
+user> (require '[lemongrab.core :refer [serialize deserialize]])
+nil
+user>(deserialize (serialize [1 2 3 4 5]))
+[1 2 3 4 5]
+user>(deserialize (serialize #{1 2 3 4}))
+#{1 4 3 2}
+```
 
 ## License
 
