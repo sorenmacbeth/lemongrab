@@ -1,16 +1,19 @@
 (ns lemongrab.core
-  (:import [lemongrab Utils]))
+  (:import [lemongrab Utils]
+           [lemongrab.kryo ObjectInput]
+           [java.io OutputStream]))
 
-(defn serialize
+(defn #^bytes serialize
   ([object]
    (Utils/serialize object))
-  ([output-stream object]
+  ([^OutputStream output-stream object]
    (Utils/serialize output-stream object)))
 
-(def deserialize #(Utils/deserialize %))
+(defn deserialize [^bytes b]
+  (Utils/deserialize b))
 
-(defn open-stream [input-stream]
+(defn ^ObjectInput open-stream [input-stream]
   (Utils/openStream input-stream))
 
-(defn read-object [stream]
+(defn read-object [^ObjectInput stream]
   (.readObject stream))
