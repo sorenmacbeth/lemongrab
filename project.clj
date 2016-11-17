@@ -1,4 +1,4 @@
-(defproject yieldbot/lemongrab "0.1.0-SNAPSHOT"
+(defproject yieldbot/lemongrab "0.1.0"
   :description "Kryo for Clojure"
   :url "https://github.com/yieldbot/lemongrab"
   :license {:name "Eclipse Public License"
