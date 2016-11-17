@@ -7,12 +7,37 @@ Kryo for Clojure
 ## Usage
 
 ``` clojure
-user> (require '[lemongrab.core :refer [serialize deserialize]])
+user> (require '[lemongrab.core :as lemongrab])
 nil
-user>(deserialize (serialize [1 2 3 4 5]))
+```
+
+### Serialize to and deserialize from byte arrays
+
+``` clojure
+user> (lemongrab/deserialize (serialize [1 2 3 4 5]))
 [1 2 3 4 5]
-user>(deserialize (serialize #{1 2 3 4}))
+user> (lemongrab/deserialize (serialize #{1 2 3 4}))
 #{1 4 3 2}
+user> (type (lemongrab/serialize :foo))
+[B
+```
+
+### Serialize to an OutputStream
+
+``` clojure
+user> (with-open [out (clojure.java.io/output-stream "/tmp/foo")]
+        (lemongrab/serialize out :foo)
+        (lemongrab/serialize out :bar))
+nil
+```
+
+### Deserialize from an InputStream
+
+``` clojure
+user> (with-open [oi (lemongrab/open-stream (clojure.java.io/input-stream "/tmp/foo"))]
+        [(lemongrab/read-object oi)
+         (lemongrab/read-object oi)])
+[:foo :bar]
 ```
 
 ## License

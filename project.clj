@@ -8,4 +8,6 @@
                  [com.esotericsoftware/kryo "3.0.3"]
                  [com.twitter/chill-java "0.8.0"]]
   :source-paths ["src/clj"]
-  :java-source-paths ["src/jvm"])
+  :java-source-paths ["src/jvm"]
+  :profiles {:dev {:dependencies [[midje "1.8.3"]]
+                   :plugins [[lein-midje "3.2.1"]]}})
