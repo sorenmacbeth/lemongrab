@@ -2,6 +2,8 @@
 
 # lemongrab
 
+[![Clojars Project](https://img.shields.io/clojars/v/yieldbot/lemongrab.svg)](https://clojars.org/yieldbot/lemongrab)
+
 Kryo for Clojure
 
 ## Usage
