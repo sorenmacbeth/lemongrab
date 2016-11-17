@@ -10,4 +10,12 @@
   :source-paths ["src/clj"]
   :java-source-paths ["src/jvm"]
   :profiles {:dev {:dependencies [[midje "1.8.3"]]
-                   :plugins [[lein-midje "3.2.1"]]}})
+                   :plugins [[lein-midje "3.2.1"]]}}
+  :release-tasks [["vcs" "assert-committed"]
+                  ["change" "version" "leiningen.release/bump-version" "release"]
+                  ["vcs" "commit"]
+                  ["vcs" "tag"]
+                  ["deploy" "clojars"]
+                  ["change" "version" "leiningen.release/bump-version"]
+                  ["vcs" "commit"]
+                  ["vcs" "push"]])
