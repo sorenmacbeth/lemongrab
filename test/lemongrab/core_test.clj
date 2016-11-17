@@ -63,4 +63,9 @@
       (with-open [oi (open-stream s)]
         [(.readObject oi)
          (.readObject oi)]))
-    => (throws KryoException)))
+    => (throws KryoException))
+  (fact "closes the input stream"
+    (let [b (serialize :foo)
+          s (io/input-stream b)]
+      (.close (open-stream s))
+      (slurp s) => (throws java.io.IOException))))

@@ -7,10 +7,12 @@ import java.io.InputStream;
 
 public class ObjectInput {
     protected KryoPool pool;
+    protected InputStream inputStream;
     protected SerDeState serde;
     
     public ObjectInput(KryoPool pool, InputStream inputStream) {
         this.pool = pool;
+        this.inputStream = inputStream;
         serde = pool.borrow();
         serde.setInput(new byte[4096]);
         serde.setInput(inputStream);
@@ -29,6 +31,7 @@ public class ObjectInput {
             throw new IOException("Trying to close an already closed ObjectInput");
         pool.release(serde);
         serde = null;
+        inputStream.close();
     }
 }
 
