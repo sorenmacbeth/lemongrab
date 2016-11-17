@@ -35,8 +35,8 @@ nil
 
 ``` clojure
 user> (with-open [oi (lemongrab/open-stream (clojure.java.io/input-stream "/tmp/foo"))]
-        [(.readObject oi)
-         (.readObject oi)])
+        [(lemongrab/read-object oi)
+         (lemongrab/read-object oi)])
 [:foo :bar]
 ```
 

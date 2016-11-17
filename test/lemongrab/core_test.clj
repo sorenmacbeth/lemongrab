@@ -49,21 +49,21 @@
     (let [b (serialize :foo)
           s (io/input-stream b)]
       (with-open [oi (open-stream s)]
-        (.readObject oi))) => :foo)
+        (read-object oi))) => :foo)
   (fact "two objects"
     (let [b (byte-array (concat (serialize :foo)
                                 (serialize :bar)))
           s (io/input-stream b)]
       (with-open [oi (open-stream s)]
-        [(.readObject oi)
-         (.readObject oi)]))
+        [(read-object oi)
+         (read-object oi)]))
     => [:foo :bar])
   (fact "one too many objects"
     (let [b (serialize :foo)
           s (io/input-stream b)]
       (with-open [oi (open-stream s)]
-        [(.readObject oi)
-         (.readObject oi)]))
+        [(read-object oi)
+         (read-object oi)]))
     => (throws KryoException))
   (fact "closes the input stream"
     (let [b (serialize :foo)

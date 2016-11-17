@@ -12,3 +12,5 @@
 (defn open-stream [input-stream]
   (Utils/openStream input-stream))
 
+(defn read-object [stream]
+  (.readObject stream))
