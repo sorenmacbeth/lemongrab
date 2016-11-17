@@ -48,7 +48,8 @@
   (fact "one object"
     (let [b (serialize :foo)
           s (io/input-stream b)]
-      (deserialize s) => :foo))
+      (with-open [oi (open-stream s)]
+        (.readObject oi))) => :foo)
   (fact "two objects"
     (let [b (byte-array (concat (serialize :foo)
                                 (serialize :bar)))

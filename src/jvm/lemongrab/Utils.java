@@ -31,18 +31,6 @@ public class Utils {
     return _kpool.fromBytes(serialized);
   }
 
-  public static Object deserialize(InputStream inputStream) throws IOException {
-    SerDeState serde = _kpool.borrow();
-    try {
-      serde.setInput(new byte[4096]);
-      serde.setInput(inputStream);
-      return serde.readClassAndObject();
-    }
-    finally {
-      _kpool.release(serde);
-    }
-  }
-
   public static ObjectInput openStream(InputStream inputStream) throws IOException {
     return new ObjectInput(_kpool, inputStream);
   }
